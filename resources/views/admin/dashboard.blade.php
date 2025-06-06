@@ -1,13 +1,17 @@
-@extends('layouts.app')
+@extends('layouts_admin.app')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Dashboard Admin')
 
 @section('content')
-<h2>Selamat datang, Admin!</h2>
-<p>Ini adalah halaman dashboard untuk admin.</p>
-
-<form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit">Logout</button>
-    </form> 
+    <div class="row">
+        <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+            <h1>8</h1>
+            <p>Data Barang</p>
+            </div>
+        </div>
+        </div>
+        <!-- Tambah lainnya -->
+    </div>
 @endsection

@@ -18,7 +18,7 @@
 
 {{-- Kalender --}}
 <div class="calendar-box">
-    <h5 class="mb-3">Kalender Peminjaman</h5>
+    <h5 class="mb-3">Calender Peminjaman</h5>
     @include('user.components.calendar')
 </div>
 
