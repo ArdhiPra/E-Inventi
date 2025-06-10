@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\DataBarangController;
+use App\Http\Controllers\Admin\DataBarangController;
 
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
@@ -24,8 +24,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::resource('data-barang', DataBarangController::class);
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('data_barang', DataBarangController::class);
 });
 
 // USER
