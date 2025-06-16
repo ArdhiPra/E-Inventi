@@ -2,24 +2,84 @@
 
 @section('content')
 
-{{-- Hero Section --}}
-<div class="hero-section text-white text-center mb-4">
-    <div class="overlay-text">
-        <h2 class="fw-bold">Selamat atang di Sistem<br>Peminjaman HMJ TI</h2>
+    {{-- Hero Section --}}
+    <div class="hero-section text-white text-center mb-4">
+        <div class="overlay-text">
+            <h2 class="fw-bold">Selamat datang di Sistem<br>Peminjaman HMJ TI</h2>
+        </div>
     </div>
-</div>
 
-{{-- Gambar-gambar item --}}
-<div class="d-flex justify-content-center gap-3 mb-4">
-    <img src="{{ asset('images/proyektor.png') }}" class="rounded-img" alt="Proyektor">
-    <img src="{{ asset('images/gamelan.png') }}" class="rounded-img" alt="Gamelan">
-    <img src="{{ asset('images/peralatan.png') }}" class="rounded-img" alt="Peralatan">    
-</div>
+    {{-- Gambar-gambar item --}}
+    <div id="itemCarousel" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000"
+        data-bs-pause="false">
+        <div class="carousel-inner px-5">
 
-{{-- Kalender --}}
-<div class="calendar-box">
-    <h5 class="mb-3">Calender Peminjaman</h5>
-    @include('user.components.calendar')
-</div>
+            {{-- Slide Pertama --}}
+            <div class="carousel-item active">
+                <div class="d-flex justify-content-center gap-4">
+                    <div class="card shadow-sm" style="width: 12rem;">
+                        <img src="{{ asset('images/proyektor.png') }}" class="card-img-top p-3" alt="Proyektor">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Proyektor</h6>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm" style="width: 12rem;">
+                        <img src="{{ asset('images/gamelan.png') }}" class="card-img-top p-3" alt="Gamelan">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Gamelan</h6>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm" style="width: 12rem;">
+                        <img src="{{ asset('images/peralatan.png') }}" class="card-img-top p-3" alt="Peralatan">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Peralatan</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Slide Kedua (bisa ganti item lain kalau tersedia) --}}
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center gap-4">
+                    <div class="card shadow-sm" style="width: 12rem;">
+                        <img src="{{ asset('images/proyektor.png') }}" class="card-img-top p-3" alt="Proyektor">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Proyektor</h6>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm" style="width: 12rem;">
+                        <img src="{{ asset('images/gamelan.png') }}" class="card-img-top p-3" alt="Gamelan">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Gamelan</h6>
+                        </div>
+                    </div>
+                    <div class="card shadow-sm" style="width: 12rem;">
+                        <img src="{{ asset('images/peralatan.png') }}" class="card-img-top p-3" alt="Peralatan">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Peralatan</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#itemCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#itemCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    {{-- Kalender --}}
+    <div class="calendar-box">
+        <h5 class="mb-3">Calender Peminjaman</h5>
+        @include('user.components.calendar')
+    </div>
 
 @endsection

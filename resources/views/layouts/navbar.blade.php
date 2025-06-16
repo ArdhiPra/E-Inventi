@@ -15,24 +15,26 @@
 
     <!-- User Icon -->
     <div class="dropdown ms-3">
-    <a href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="text-decoration-none">
-      <i class="bi bi-person-circle fs-4 custom-user-icon"></i>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-      <li>
-        <a class="dropdown-item" href="#">Akun Saya</a>
-      </li>
-      <li><hr class="dropdown-divider"></li>
-      <li>
-        <form action="/logout" method="POST" class="d-inline">
-        @csrf
-        <button type="submit" class="dropdown-item text-danger">Keluar</button>
-        </form>
-      </li>
-    </ul>
-  </div>
+      <a href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="text-decoration-none">
+        <i class="bi bi-person-circle fs-4 custom-user-icon"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+        <li>
+          <a class="dropdown-item disabled" href="#">
+            {{ Auth::user()->name }}
+          </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+          <form action="/logout" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="dropdown-item text-danger">Keluar</button>
+          </form>
+        </li>
+      </ul>
+    </div>
 
-    <!-- Toggler (diletakkan terakhir untuk tampilan mobile) -->
+    <!-- Toggler -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
