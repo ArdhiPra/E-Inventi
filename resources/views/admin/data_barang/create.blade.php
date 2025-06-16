@@ -20,7 +20,12 @@
 
         <div class="mb-3">
             <label for="jenis" class="form-label">Jenis</label>
-            <input type="text" name="jenis" id="jenis" class="form-control" required>
+            <select name="jenis" id="jenis" class="form-control" required>
+                <option value="" disabled selected>Pilih Jenis</option>
+                <option value="Dekorasi">Dekorasi</option>
+                <option value="Alat Elektronik">Alat Elektronik</option>
+                <option value="Perkakas">Perkakas</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Simpan</button>

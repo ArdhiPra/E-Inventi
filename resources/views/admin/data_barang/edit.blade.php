@@ -21,7 +21,12 @@
 
         <div class="mb-3">
             <label for="jenis" class="form-label">Jenis</label>
-            <input type="text" name="jenis" class="form-control" value="{{ $barang->jenis }}" required>
+            <select name="jenis" class="form-control" required>
+                <option value="" disabled>Pilih Jenis</option>
+                <option value="Dekorasi" {{ $barang->jenis === 'Dekorasi' ? 'selected' : '' }}>Dekorasi</option>
+                <option value="Alat Elektronik" {{ $barang->jenis === 'Alat Elektronik' ? 'selected' : '' }}>Alat Elektronik</option>
+                <option value="Perkakas" {{ $barang->jenis === 'Perkakas' ? 'selected' : '' }}>Perkakas</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>

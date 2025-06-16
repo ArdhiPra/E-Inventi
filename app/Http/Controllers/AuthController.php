@@ -8,6 +8,11 @@
 
     class AuthController extends Controller
     {
+    public function beranda()
+        {
+        return view('welcome');
+        }
+
     public function showLogin() {
     if (Auth::check()) {
         return Auth::user()->role === 'admin'
@@ -15,7 +20,7 @@
             : redirect('/user/dashboard');
     }
     return view('auth.login'); // <--- penting!
-}
+    }
 
         public function login(Request $request) {
             $credentials = $request->validate([

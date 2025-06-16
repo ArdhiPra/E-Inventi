@@ -4,10 +4,11 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\PeminjamanController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Admin\DataBarangController;
 
-
+Route::get('/', [AuthController::class, 'beranda'])->name('beranda')->middleware('guest');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->middleware('guest');
@@ -31,4 +32,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // USER
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+
+    // Peminjaman Routes
+    Route::get('/user/peminjaman', [PeminjamanController::class, 'index'])->name('user.peminjaman.index');
+    Route::get('/user/peminjaman/create', [PeminjamanController::class, 'create'])->name('user.peminjaman.create');
 });

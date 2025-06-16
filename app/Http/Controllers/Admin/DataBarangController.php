@@ -34,7 +34,7 @@ class DataBarangController extends Controller
     $request->validate([
         'nama_barang' => 'required|string|max:255',
         'stok' => 'required|integer|min:1',
-        'jenis' => 'required|string'
+        'jenis' => 'required|in:Dekorasi,Alat Elektronik,Perkakas'
     ]);
 
     Barang::create($request->all());
@@ -67,7 +67,7 @@ class DataBarangController extends Controller
         $validated = $request->validate([
             'nama_barang' => 'required|string|max:255',
             'stok' => 'required|integer',
-            'jenis' => 'required|string',
+            'jenis' => 'required|in:Dekorasi,Alat Elektronik,Perkakas',
         ]);
 
         $barang = Barang::findOrFail($id);

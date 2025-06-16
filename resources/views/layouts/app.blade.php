@@ -40,10 +40,8 @@
     }
 
     .container-box {
-      background: rgba(255, 255, 255, 0.85);
       padding: 2rem;
       border-radius: 1rem;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 500px;
       z-index: 1;
