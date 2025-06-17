@@ -8,6 +8,10 @@
 
     class AuthController extends Controller
     {
+    public function beranda() {
+    return view('beranda'); // atau beranda.blade.php
+    }
+
     public function showLogin() {
     if (Auth::check()) {
         return Auth::user()->role === 'admin'
