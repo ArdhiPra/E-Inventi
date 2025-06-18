@@ -7,7 +7,7 @@
   <div class="card p-4 shadow">
     <div class="text-center mb-4">
       <h2 class="mb-1">Register</h2>
-      <h6 class="text-muted">E-InvenTI</h6>
+      <h6 class="text-muted">e-InvenTI</h6>
     </div>
 
     <form action="/register" method="POST">

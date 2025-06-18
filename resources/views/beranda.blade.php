@@ -69,10 +69,10 @@
 
     {{-- Navbar khusus guest --}}
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
+    <div class="container-fluid">
         {{-- Logo --}}
         <a class="navbar-brand fw-bold" href="{{ url('/') }}">
-            E-<span class="text-primary">InvenTI</span>
+            e-<span class="text-primary">InvenTI</span>
         </a>
 
         {{-- Toggle untuk Mobile --}}

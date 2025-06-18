@@ -87,16 +87,79 @@
         text-decoration: underline;
     }
 
-    .custom-user-icon {
-  color: #000;
-  transition: transform 0.3s ease, color 0.3s ease;
-  cursor: pointer;
-  display: inline-block; /* Penting agar transform bisa bekerja */
+  .custom-user-icon {
+    color: #000;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    display: inline-block; /* Penting agar transform bisa bekerja */
+  }
+/* Hover efek untuk icon user */
+/* Hover effect icon */
+/* Hover effect icon */
+a#userDropdown:hover .custom-user-icon {
+  transform: scale(1.5);
+  color: #333;
 }
 
-a#userDropdown:hover .custom-user-icon {
-  transform: scale(1.5); /* 2.5 terlalu besar, bisa memecah layout */
-  color: #333;
+/* Dropdown menu base */
+.dropdown-menu {
+  padding: 0;
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  z-index: 1050;
+}
+
+/* Setel ulang padding dan background item <li> */
+.dropdown-menu li {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* User name in center */
+.dropdown-menu .dropdown-item.user-label {
+  padding: 10px 16px;
+  width: 100%;
+  display: block;
+  color: #6c757d;
+  background-color: white;
+  pointer-events: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Logout button styling */
+/* Tampilan default tombol keluar (idle) */
+.dropdown-menu .logout-btn {
+  background-color: white !important;
+  color: #dc3545 !important;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: center;
+  border: none;
+  border-radius: 0;
+  font-weight: 500;
+  box-shadow: none !important;
+  background-image: none !important;
+  transition: background-color 0.2s, color 0.2s;
+  /* Flexbox untuk pusatkan isi tombol */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* jarak antara ikon dan teks */
+}
+
+
+/* Saat hover, fokus, atau ditekan */
+.dropdown-menu .logout-btn:hover,
+.dropdown-menu .logout-btn:focus,
+.dropdown-menu .logout-btn:active {
+  background-color: #dc3545 !important;
+  color: white !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
     </style>

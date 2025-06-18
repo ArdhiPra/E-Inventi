@@ -1,42 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    
-    <!-- Logo -->
-    <a class="navbar-brand me-auto fw-bold" href="#">E-<span class="text-primary">InvenTI</span></a>
+  <div class="container-fluid">
+    <div class="row w-100 align-items-center">
 
-    <!-- Nav Items -->
-    <div class="collapse navbar-collapse justify-content-center flex-grow-1" id="navbarContent">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="#">Peminjaman</a></li>
-        <li class="nav-item"><a class="nav-link active fw-bold border-bottom border-dark" href="#">Beranda</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Riwayat</a></li>
-      </ul>
+      <!-- KIRI: Logo -->
+      <div class="col-4 d-flex align-items-center">
+        <a class="navbar-brand fw-bold" href="#">e-<span class="text-primary">InvenTI</span></a>
+      </div>
+
+      <!-- TENGAH: Menu -->
+      <div class="col-4 d-flex justify-content-center">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#">Peminjaman</a></li>
+          <li class="nav-item"><a class="nav-link active fw-bold border-bottom border-dark" href="#">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Riwayat</a></li>
+        </ul>
+      </div>
+
+      <!-- KANAN: User icon + toggler -->
+     <div class="col-4 d-flex justify-content-end align-items-center">
+  <div class="dropdown me-2">
+    <a href="#" id="userDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false" class="text-decoration-none">
+      <i class="bi bi-person-circle fs-4 custom-user-icon"></i>
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+  <!-- Nama User -->
+  <li>
+    <span class="dropdown-item user-label">{{ Auth::user()->name }}</span>
+  </li>
+  <li><hr class="dropdown-divider m-0"></li>
+
+  <!-- Tombol Keluar dengan Icon -->
+  <li>
+    <form action="/logout" method="POST" class="m-0 p-0">
+      @csrf
+      <button type="submit" class="dropdown-item logout-btn">
+        <i class="bi bi-box-arrow-right"></i> Keluar
+      </button>
+    </form>
+  </li>
+</ul>
+
+  </div>
+</div>
+
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
     </div>
-
-    <!-- User Icon -->
-    <div class="dropdown ms-3">
-      <a href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" class="text-decoration-none">
-        <i class="bi bi-person-circle fs-4 custom-user-icon"></i>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-        <li>
-          <a class="dropdown-item disabled" href="#">
-            {{ Auth::user()->name }}
-          </a>
-        </li>
-        <li><hr class="dropdown-divider"></li>
-        <li>
-          <form action="/logout" method="POST" class="d-inline">
-            @csrf
-            <button type="submit" class="dropdown-item text-danger">Keluar</button>
-          </form>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
   </div>
 </nav>
