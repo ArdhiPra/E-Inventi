@@ -4,77 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title') - e-InvenTI</title>
-
-  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-    }
-
-    /* Toggle Sidebar */
-    #sidebarToggle {
-      display: none;
-    }
-
-    .wrapper {
-      display: flex;
-      flex-direction: row-reverse;
-      height: 100vh;
-      position: relative;
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #d7f9fc;
-      padding: 1.5rem;
-      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
-
-    /* Hide sidebar when checkbox not checked */
-    #sidebarToggle:not(:checked) ~ .wrapper .sidebar {
-      transform: translateX(100%);
-    }
-
-    .sidebar h4 {
-      font-weight: bold;
-    }
-
-    .sidebar a {
-      display: block;
-      padding: 0.5rem 0;
-      color: #000;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .sidebar a:hover {
-      color: #007bff;
-    }
-
-    .content {
-      flex: 1;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      border-bottom: 1px solid #ccc;
-    }
-
-    .toggle-icon {
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('title', 'Login')
 
@@ -42,8 +42,8 @@
       <p class="small mb-2">- Atau Akses Cepat -</p>
       <a href="{{ route('google.redirect') }}">
         <img src="{{ asset('images/google.png') }}" 
-             alt="Login dengan Google"
-             style="width: 175px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+            alt="Login dengan Google"
+            style="width: 175px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
       </a>
     </div>
   </div>

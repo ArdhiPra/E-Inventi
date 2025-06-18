@@ -71,7 +71,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container-fluid">
         {{-- Logo --}}
-        <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+        <a class="navbar-brand fw-bold" href="{{ route('login') }}">
             e-<span class="text-primary">InvenTI</span>
         </a>
 
@@ -89,14 +89,13 @@
                     <a class="nav-link" href="{{ route('login') }}">Peminjaman</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold border-bottom border-dark" href="#">Beranda</a>
+                    <a class="nav-link fw-bold border-bottom border-dark" href="{{ route('login') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Riwayat</a>
                 </li>
             </ul>
 
-            {{-- Tombol Login / Register --}}
             <div class="d-flex gap-2">
                 <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">Login</a>
                 <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Daftar</a>
