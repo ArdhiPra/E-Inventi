@@ -4,53 +4,53 @@
 
       <!-- KIRI: Logo -->
       <div class="col-4 d-flex align-items-center">
-        <a class="navbar-brand fw-bold" href="#">e-<span class="text-primary">InvenTI</span></a>
+        <a class="navbar-brand fw-bold" href="{{ route('user.dashboard') }}">e-<span class="text-primary">InvenTI</span></a>
       </div>
 
       <!-- TENGAH: Menu -->
       <div class="col-4 d-flex justify-content-center">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#">Peminjaman</a></li>
-          <li class="nav-item"><a class="nav-link active fw-bold border-bottom border-dark" href="#">Beranda</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Riwayat</a></li>
+          <li class="nav-item">
+            <a class="nav-link {{ Route::is('peminjaman') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('peminjaman') }}">Peminjaman</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Route::is('user.dashboard') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('user.dashboard') }}">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Route::is('login') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('login') }}">Riwayat</a>
+          </li>
         </ul>
       </div>
 
       <!-- KANAN: User icon + toggler -->
-     <div class="col-4 d-flex justify-content-end align-items-center">
-  <div class="dropdown me-2">
-    <a href="#" id="userDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false" class="text-decoration-none">
-      <i class="bi bi-person-circle fs-4 custom-user-icon"></i>
-    </a>
-
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-  <!-- Nama User -->
-  <li>
-    <span class="dropdown-item user-label">{{ Auth::user()->name }}</span>
-  </li>
-  <li><hr class="dropdown-divider m-0"></li>
-
-  <!-- Tombol Keluar dengan Icon -->
-  <li>
-    <form action="/logout" method="POST" class="m-0 p-0">
-      @csrf
-      <button type="submit" class="dropdown-item logout-btn">
-        <i class="bi bi-box-arrow-right"></i> Keluar
-      </button>
-    </form>
-  </li>
-</ul>
-
-  </div>
-</div>
-
-
-        <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <div class="dropdown me-2">
+          <a href="#" id="userDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false" class="text-decoration-none">
+            <i class="bi bi-person-circle fs-4 custom-user-icon"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li>
+              <a class="dropdown-item user-label" href="">
+                {{ Auth::user()->name }}
+              </a>
+            </li>
+            <li><hr class="dropdown-divider m-0"></li>
+            <li>
+              <form action="/logout" method="POST" class="m-0 p-0">
+                @csrf
+                <button type="submit" class="dropdown-item logout-btn">
+                  <i class="bi bi-box-arrow-right"></i> Keluar
+                </button>
+              </form>
+            </li>
+          </ul>
+        </div>
       </div>
 
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
   </div>
 </nav>

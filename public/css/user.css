@@ -11,7 +11,6 @@ body {
     border-radius: 10px;
 }
 
-
 .hero-section {
     background-image: url('/images/pnb.jpg');
     background-size: cover;
@@ -23,7 +22,6 @@ body {
 
 .overlay-text {
     background: rgba(0, 0, 0, 0.4);
-    /* semi-transparan */
     padding: 20px;
     border-radius: 15px;
     display: inline-block;
@@ -38,13 +36,11 @@ body {
 
 .custom-user-icon {
     font-size: 1.5rem;
-    /* Atur ukuran icon */
     color: #000000;
-    /* Ganti warna sesuai kebutuhan (ini biru Bootstrap) */
     cursor: pointer;
 }
 
-/* Hilangkan caret (segitiga dropdown) */
+/* Remove caret (dropdown triangle) */
 .dropdown-toggle::after {
     display: none;
 }
@@ -67,7 +63,7 @@ body {
     gap: 30px;
 }
 
-nav-links li a {
+.nav-links li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
@@ -83,7 +79,6 @@ nav-links li a {
     transition: transform 0.3s ease, color 0.3s ease;
     cursor: pointer;
     display: inline-block;
-    /* Penting agar transform bisa bekerja */
 }
 
 a#userDropdown:hover .custom-user-icon {
@@ -101,7 +96,7 @@ a#userDropdown:hover .custom-user-icon {
     z-index: 1050;
 }
 
-/* Setel ulang padding dan background item <li> */
+/* Reset padding and background of <li> items */
 .dropdown-menu li {
     background-color: transparent;
     padding: 0;
@@ -114,14 +109,19 @@ a#userDropdown:hover .custom-user-icon {
     display: block;
     color: #6c757d;
     background-color: white;
-    pointer-events: none;
     text-align: center;
     font-weight: 600;
     font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for user name */
+.dropdown-menu .dropdown-item.user-label:hover {
+    background-color: #0d6efd !important;
+    color: white !important;
 }
 
 /* Logout button styling */
-/* Tampilan default tombol keluar (idle) */
 .dropdown-menu .logout-btn {
     background-color: white !important;
     color: #dc3545 !important;
@@ -134,16 +134,12 @@ a#userDropdown:hover .custom-user-icon {
     box-shadow: none !important;
     background-image: none !important;
     transition: background-color 0.2s, color 0.2s;
-    /* Flexbox untuk pusatkan isi tombol */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    /* jarak antara ikon dan teks */
 }
 
-
-/* Saat hover, fokus, atau ditekan */
 .dropdown-menu .logout-btn:hover,
 .dropdown-menu .logout-btn:focus,
 .dropdown-menu .logout-btn:active {
