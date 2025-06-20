@@ -30,7 +30,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <li>
-              <a class="dropdown-item user-label" href="">
+              <a class="dropdown-item user-label" href="{{ route('user.profile') }}">
                 {{ Auth::user()->name }}
               </a>
             </li>

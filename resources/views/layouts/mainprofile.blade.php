@@ -14,7 +14,7 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            @include('layouts.sidebar')
+            @include('profile.profilenavbar')
 
             <div class="col-md-9">
                 @yield('profile')

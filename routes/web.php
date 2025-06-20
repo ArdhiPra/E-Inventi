@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\User\PeminjamanController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Admin\DataBarangController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\ProfileController;
 
 
 Route::get('/', function () {
@@ -43,6 +43,6 @@ Route::middleware(['auth', 'user'])->group(function () {
 });
 
 Route::middleware(['auth'])->prefix('user')->group(function () {
-    Route::get('/profile/profile', [ProfileController::class, 'show'])->name('user.profile');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('user.profile');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('user.profile.update');
 });
