@@ -43,6 +43,18 @@ Route::middleware(['auth', 'user'])->group(function () {
 });
 
 Route::middleware(['auth'])->prefix('user')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('user.profile');
-    Route::put('/profile', [ProfileController::class, 'update'])->name('user.profile.update');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('user.profile');
+    Route::put('profile', [ProfileController::class, 'update'])->name('user.profile.update');
+});
+
+Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+    
+    // Route tampilkan form ubah password
+    Route::get('/password', [ProfileController::class, 'showChangePasswordForm'])->name('password.edit');
+
+    // Route proses ubah password
+    Route::post('/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
+
+    // Route set password untuk user Google login (jika belum punya password)
+    Route::post('/password/set', [ProfileController::class, 'setPassword'])->name('password.set');
 });

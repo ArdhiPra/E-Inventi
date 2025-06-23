@@ -11,34 +11,60 @@ class ProfileController extends Controller
 {
     public function edit()
     {
-        $user = Auth::user();
-        return view('user.profile.profile', compact('user'));
+    $user = Auth::user();
+    return view('user.profile.profile', compact('user'));
+    }
+    
+    /**
+     * Tampilkan form ubah password (jika sudah punya password).
+     */
+    public function showChangePasswordForm()
+    {
+        return view('user.profile.change_password');
     }
 
-    public function update(Request $request)
-{
-    /** @var \App\Models\User $user */
-    $user = Auth::user(); // pastikan ini instance User
-
-    $request->validate([
-        'name' => 'required|string|max:100',
-        'email' => 'required|email|unique:users,email,' . $user->id,
-        'phone' => 'nullable|string|max:20',
-        'address' => 'nullable|string|max:255',
-        'password' => 'nullable|string|min:6|confirmed',
+    /**
+     * Proses update password untuk user yang sudah punya password.
+     */
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'new_password' => ['required', 'min:8', 'confirmed'],
         ]);
 
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->phone = $request->phone;
-    $user->address = $request->address;
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
 
-    if ($request->filled('password')) {
-        $user->password = Hash::make($request->password);
+        return back()->with('success', 'Password berhasil diperbarui.');
     }
 
-    $user->save(); 
+    /**
+     * Set password pertama kali untuk user login via Google.
+     */
+    public function setPassword(Request $request)
+    {
+        $request->validate([
+            'new_password' => ['required', 'min:8', 'confirmed'],
+        ]);
 
-    return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        // Cegah set password jika user sudah memiliki password
+        if (!is_null($user->password)) {
+            return redirect()
+                ->route('user.password.edit')
+                ->withErrors(['new_password' => 'Anda sudah memiliki password.']);
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()
+            ->route('user.password.edit')
+            ->with('success', 'Password berhasil disimpan.');
     }
 }
