@@ -1,34 +1,46 @@
-@php
-    use Carbon\Carbon;
-    $now = Carbon::now();
-    $startOfMonth = $now->copy()->startOfMonth();
-    $endOfMonth = $now->copy()->endOfMonth();
-    $startDate = $startOfMonth->copy()->startOfWeek(Carbon::MONDAY);
-    $endDate = $endOfMonth->copy()->endOfWeek(Carbon::SUNDAY);
-@endphp
+<!DOCTYPE html>
+<html lang="en">
 
-<table class="w-full table-fixed border-collapse border border-gray-400 text-center">
-    <thead>
-        <tr class="bg-gray-200">
-            @foreach (['SENIN', 'SELASA', 'RABU', 'KAMIS', 'JUMAT', 'SABTU', 'MINGGU'] as $day)
-                <th class="border border-gray-300 p-2">{{ $day }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @for ($date = $startDate->copy(); $date <= $endDate; $date->addWeek())
-            <tr>
-                @for ($i = 0; $i < 7; $i++)
-                    <td class="border border-gray-300 h-16 align-top">
-                        @if ($date->month == $now->month)
-                            {{ $date->day }}
-                        @else
-                            <span class="text-gray-400">{{ $date->day }}</span>
-                        @endif
-                        @php $date->addDay(); @endphp
-                    </td>
-                @endfor
-            </tr>
-        @endfor
-    </tbody>
-</table>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <section class="calendar section">
+        <div class="calendar-title-box">
+            Kalender Peminjaman
+        </div>
+        <div id="calendar"></div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+    <style>
+        #calendar {
+            max-width: 85%;
+            /* Resize calendar to smaller width */
+            margin: 20px auto;
+            margin-top: 50px;
+        }
+
+        .calendar-title-box {
+            border: 2px solid #0d6efd;
+            /* Outline biru */
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: inline-block;
+            /* Agar kotaknya hanya selebar teks */
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: #ffffff;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+    </style>
+
+</body>
+
+</html>
