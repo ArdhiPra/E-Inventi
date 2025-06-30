@@ -11,7 +11,7 @@
       <div class="col-4 d-flex justify-content-center">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ Route::is('peminjaman') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('peminjaman') }}">Peminjaman</a>
+            <a class="nav-link {{ Route::is('user.peminjaman.index') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('user.peminjaman.index') }}">Peminjaman</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ Route::is('user.dashboard') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('user.dashboard') }}">Beranda</a>

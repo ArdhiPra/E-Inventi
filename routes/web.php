@@ -38,7 +38,7 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 
     // Peminjaman Routes
-    Route::get('/user/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman');
+    Route::get('/user/peminjaman', [PeminjamanController::class, 'index'])->name('user.peminjaman.index');
     Route::get('/user/peminjaman/create', [PeminjamanController::class, 'create'])->name('user.peminjaman.create');
 });
 

@@ -76,10 +76,62 @@
     </div>
 
 
-    {{-- Kalender --}}
-    <div class="calendar-box">
-        <h5 class="mb-3">Calender Peminjaman</h5>
-        @include('user.components.calendar')
-    </div>
+   
+        <section class="calendar section">
+            <div class="calendar-title-box">
+                Kalender Peminjaman
+            </div>
+            <div id="calendar"></div>
+        </section>
+
+
+
+    </main>
+
+    {{-- Bootstrap JS --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth', // Tampilkan kalender bulanan
+                headerToolbar: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                },
+                height: 600,
+                // Tidak ada 'events' yang ditentukan, jadi kalender kosong
+            });
+
+            calendar.render();
+        });
+    </script>
+
+    <style>
+        #calendar {
+            max-width: 85%;
+            /* Resize calendar to smaller width */
+            margin: 20px auto;
+            margin-top: 50px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .calendar-title-box {
+            border: 2px solid #0d6efd;
+            /* Outline biru */
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: inline-block;
+            /* Agar kotaknya hanya selebar teks */
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: #ffffff;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+    </style>
+
 
 @endsection

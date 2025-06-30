@@ -93,7 +93,7 @@ a#userDropdown:hover .custom-user-icon {
     background-color: white;
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
-    z-index: 1050;
+    z-index: 1050 !important;
 }
 
 /* Reset padding and background of <li> items */

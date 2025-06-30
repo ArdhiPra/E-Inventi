@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Beranda - E-InvenTI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('images/1.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+
 
     <style>
         body {
@@ -57,51 +61,52 @@
         }
 
         .calendar-box {
-        background-color: white;
-        border-radius: 10px;
-        padding: 1.5rem;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
+
 <body>
 
     {{-- Navbar khusus guest --}}
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container-fluid">
-        {{-- Logo --}}
-        <a class="navbar-brand fw-bold" href="{{ route('login') }}">
-            e-<span class="text-primary">InvenTI</span>
-        </a>
+        <div class="container-fluid">
+            {{-- Logo --}}
+            <a class="navbar-brand fw-bold" href="{{ route('login') }}">
+                e-<span class="text-primary">InvenTI</span>
+            </a>
 
-        {{-- Toggle untuk Mobile --}}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#guestNavbar"
-            aria-controls="guestNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            {{-- Toggle untuk Mobile --}}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#guestNavbar"
+                aria-controls="guestNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        {{-- Isi Navbar --}}
-        <div class="collapse navbar-collapse" id="guestNavbar">
-            {{-- Menu Tengah --}}
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Peminjaman</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bold border-bottom border-dark" href="{{ route('login') }}">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Riwayat</a>
-                </li>
-            </ul>
+            {{-- Isi Navbar --}}
+            <div class="collapse navbar-collapse" id="guestNavbar">
+                {{-- Menu Tengah --}}
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Peminjaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold border-bottom border-dark" href="{{ route('login') }}">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Riwayat</a>
+                    </li>
+                </ul>
 
-            <div class="d-flex gap-2">
-                <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">Login</a>
-                <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Daftar</a>
+                <div class="d-flex gap-2">
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Daftar</a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 
     {{-- Konten Utama --}}
@@ -144,7 +149,8 @@
                     <div class="carousel-item">
                         <div class="d-flex justify-content-center gap-4">
                             <div class="card shadow-sm">
-                                <img src="{{ asset('images/proyektor.png') }}" class="card-img-top p-3" alt="Proyektor 2">
+                                <img src="{{ asset('images/proyektor.png') }}" class="card-img-top p-3"
+                                    alt="Proyektor 2">
                                 <div class="card-body text-center">
                                     <h6 class="card-title">Proyektor 2</h6>
                                 </div>
@@ -156,7 +162,8 @@
                                 </div>
                             </div>
                             <div class="card shadow-sm">
-                                <img src="{{ asset('images/peralatan.png') }}" class="card-img-top p-3" alt="Peralatan 2">
+                                <img src="{{ asset('images/peralatan.png') }}" class="card-img-top p-3"
+                                    alt="Peralatan 2">
                                 <div class="card-body text-center">
                                     <h6 class="card-title">Peralatan 2</h6>
                                 </div>
@@ -176,13 +183,64 @@
             </div>
         </div>
 
-        <div class="calendar-box">
-            <h5 class="mb-3">Calender Peminjaman</h5>
-            @include('user.components.calendar')
-        </div>
+        <section class="calendar section">
+            <div class="calendar-title-box">
+                Kalender Peminjaman
+            </div>
+            <div id="calendar"></div>
+        </section>
+
+
+
     </main>
 
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth', // Tampilkan kalender bulanan
+                headerToolbar: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
+                },
+                height: 600,
+
+                // Tidak ada 'events' yang ditentukan, jadi kalender kosong
+            });
+
+            calendar.render();
+        });
+    </script>
+
+    <style>
+        #calendar {
+            max-width: 85%;
+            /* Resize calendar to smaller width */
+            margin: 20px auto;
+            margin-top: 50px;
+        }
+
+        .calendar-title-box {
+            border: 2px solid #0d6efd;
+            /* Outline biru */
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: inline-block;
+            /* Agar kotaknya hanya selebar teks */
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: #ffffff;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+    </style>
+
 </body>
+
 </html>

@@ -8,12 +8,12 @@ class PeminjamanController extends Controller
 {
     public function index()
     {
-        return view('user.peminjaman');
+        return view('user.peminjaman.index');
     }
 
     public function create()
     {
-        return view('user.peminjaman-create'); // buat nanti kalau perlu
+        return view('user.peminjaman.create'); // buat nanti kalau perlu
     }
 }
 
