@@ -1,72 +1,94 @@
-@extends('layouts.dashboard') {{-- Atau layout profilmu --}}
+@extends('layouts.main')
+
+@section('title', 'Form Peminjaman')
 
 @section('content')
 <div class="container mt-4">
-    <h4 class="mb-3">Form Pengajuan Peminjaman</h4>
-
-    <form action="" method="POST">
-        @csrf
-
-        <div class="mb-3">
-            <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-            <input type="text" class="form-control" name="nama_lengkap" value="{{ old('nama_lengkap', Auth::user()->name) }}" required>
+    {{-- Pesan Sukses --}}
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
+    @endif
 
-        <div class="mb-3">
-            <label for="nim" class="form-label">NIM</label>
-            <input type="text" class="form-control" name="nim" required>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
         </div>
+    @endif
 
-        <div class="mb-3">
-            <label for="whatsapp" class="form-label">Nomor WhatsApp</label>
-            <input type="text" class="form-control" name="whatsapp" required>
-        </div>
+    <h3>Form Peminjaman Barang</h3>
 
-        <div class="mb-3">
-            <label for="deskripsi" class="form-label">Deskripsi Peminjaman</label>
-            <textarea class="form-control" name="deskripsi" rows="3" required></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="jenis" class="form-label">Jenis Barang</label>
-            <select name="jenis" class="form-select" required onchange="this.form.submit()">
+    {{-- Form Pilih Jenis --}}
+    <form method="GET" action="{{ route('user.peminjaman.create') }}" class="mb-3">
+        <div class="form-group">
+            <label for="jenis">1. Pilih Jenis Barang</label>
+            <select name="jenis" id="jenis" class="form-control" onchange="this.form.submit()" required>
                 <option value="">-- Pilih Jenis --</option>
-                <option value="Elektronik">Elektronik</option>
-                <option value="Pakaian">Pakaian</option>
-                <option value="Makanan">Makanan</option>
-                <option value="Game">Game</option>
+                <option value="Elektronik" {{ request('jenis') == 'Elektronik' ? 'selected' : '' }}>Elektronik</option>
+                <option value="Dekorasi" {{ request('jenis') == 'Dekorasi' ? 'selected' : '' }}>Dekorasi</option>
+                <option value="Perkakas" {{ request('jenis') == 'Perkakas' ? 'selected' : '' }}>Perkakas</option>
             </select>
         </div>
+    </form>
 
-        @isset($barangList)
+    {{-- Form Peminjaman --}}
+    <form method="POST" action="{{ route('user.peminjaman.store') }}">
+        @csrf
+        <input type="hidden" name="jenis" value="{{ request('jenis') }}">
+
         <div class="mb-3">
-            <label for="barang_id" class="form-label">Pilih Barang</label>
-            <select name="barang_id" class="form-select" required>
+            <label for="nama_lengkap">2. Nama Lengkap</label>
+            <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" required value="{{ old('nama_lengkap') }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="nim">3. NIM</label>
+            <input type="text" name="nim" id="nim" class="form-control" required value="{{ old('nim') }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="nomor_wa">4. Nomor WhatsApp</label>
+            <input type="text" name="nomor_wa" id="nomor_wa" class="form-control" required value="{{ old('nomor_wa') }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="deskripsi">5. Deskripsi</label>
+            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3" required>{{ old('deskripsi') }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="barang_id">6. Pilih Barang</label>
+            <select name="barang_id" id="barang_id" class="form-control" required>
                 <option value="">-- Pilih Barang --</option>
-                @foreach($barangList as $barang)
+                @foreach($barangs as $barang)
                     <option value="{{ $barang->id }}">{{ $barang->nama_barang }}</option>
                 @endforeach
             </select>
         </div>
-        @endisset
 
         <div class="mb-3">
-            <label for="tanggal" class="form-label">Tanggal</label>
-            <input type="date" class="form-control" name="tanggal" required>
+            <label for="jumlah">7. Jumlah Dipinjam</label>
+            <input type="number" name="jumlah" id="jumlah" class="form-control" min="1" required value="{{ old('jumlah') }}">
         </div>
 
         <div class="mb-3">
-            <label for="jam_mulai" class="form-label">Jam Mulai</label>
-            <input type="time" class="form-control" name="jam_mulai" required>
+            <label for="tanggal">8. Tanggal</label>
+            <input type="date" name="tanggal" id="tanggal" class="form-control" required value="{{ old('tanggal') }}">
         </div>
 
         <div class="mb-3">
-            <label for="jam_berakhir" class="form-label">Jam Berakhir</label>
-            <input type="time" class="form-control" name="jam_berakhir" required>
+            <label for="jam_mulai">9. Jam Mulai</label>
+            <input type="time" name="jam_mulai" id="jam_mulai" class="form-control" required value="{{ old('jam_mulai') }}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Ajukan Peminjaman</button>
-        <a href="{{ route('user.peminjaman.index') }}" class="btn btn-secondary">Kembali</a>
+        <div class="mb-3">
+            <label for="jam_berakhir">10. Jam Berakhir</label>
+            <input type="time" name="jam_berakhir" id="jam_berakhir" class="form-control" required value="{{ old('jam_berakhir') }}">
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Ajukan Peminjaman</button>
+        <a href="{{ route('user.peminjaman.index') }}" class="btn btn-secondary mt-3">Kembali</a>
     </form>
 </div>
 @endsection

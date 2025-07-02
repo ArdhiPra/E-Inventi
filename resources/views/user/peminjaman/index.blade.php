@@ -59,7 +59,7 @@
                     center: 'title',
                     right: 'dayGridMonth,dayGridWeek,dayGridDay'
                 },
-                height: 600,
+                height: 750,
                 events: [
                     // Contoh dummy data
                     {

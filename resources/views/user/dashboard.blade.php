@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.main')
 
 @section('content')
 
@@ -90,23 +90,41 @@
 
     {{-- Bootstrap JS --}}
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', // Tampilkan kalender bulanan
-                headerToolbar: {
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
-                },
-                height: 600,
-                // Tidak ada 'events' yang ditentukan, jadi kalender kosong
-            });
-
-            calendar.render();
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            height: 600,
+            slotMinTime: "06:00:00",
+            slotMaxTime: "22:00:00",
+            eventTimeFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            },
+            events: '/calendar-events',
+            eventDisplay: 'block',
+            displayEventTime: true,
+            eventDidMount: function(info) {
+                // Tooltip on hover
+                tippy(info.el, {
+                    content: info.event.title,
+                    placement: 'top',
+                    arrow: true,
+                });
+            }
         });
-    </script>
+
+        calendar.render();
+    });
+</script>
+
 
     <style>
         #calendar {
@@ -130,6 +148,21 @@
             background-color: #ffffff;
             color: #0d6efd;
             margin-bottom: 1rem;
+        }
+
+        .fc-event {
+        font-size: 13px;
+        padding: 2px 4px;
+        border-radius: 6px;
+        }
+
+        .fc-daygrid-event-dot {
+            display: none; /* Hilangkan titik kecil */
+        }
+
+        .fc .fc-toolbar-title {
+            font-size: 1.4rem;
+            font-weight: bold;
         }
     </style>
 

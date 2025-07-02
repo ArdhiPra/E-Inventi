@@ -11,14 +11,13 @@
       <div class="col-4 d-flex justify-content-center">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link {{ Route::is('user.peminjaman.index') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('user.peminjaman.index') }}">Peminjaman</a>
+            <a class="nav-link {{ Route::is('user.peminjaman.*') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('user.peminjaman.index') }}">Peminjaman</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ Route::is('user.dashboard') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('user.dashboard') }}">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Route::is('login') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('login') }}">Riwayat</a>
-          </li>
+            <a class="nav-link {{ Route::is('user.riwayat.index') ? 'active fw-bold border-bottom border-dark' : '' }}" href="{{ route('user.riwayat.index') }}">Riwayat</a></li>
         </ul>
       </div>
 

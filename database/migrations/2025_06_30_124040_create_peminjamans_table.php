@@ -8,7 +8,7 @@ class CreatePeminjamansTable extends Migration
 {
     public function up()
     {
-        Schema::create('tbl_peminjamans', function (Blueprint $table) {
+        Schema::create('tbl_peminjaman', function (Blueprint $table) {
             $table->id();
 
             // Jika user login, gunakan foreign key ke tabel users
@@ -17,7 +17,7 @@ class CreatePeminjamansTable extends Migration
             $table->string('nim');
             $table->string('nomor_wa');
             $table->text('deskripsi');
-            $table->enum('jenis', ['Elektronik', 'Alat Tulis', 'Lainnya']);
+            $table->enum('jenis', ['Elektronik', 'Dekorasi', 'Perkakas']);
             $table->unsignedBigInteger('barang_id');
             $table->date('tanggal');
             $table->time('jam_mulai');
@@ -34,6 +34,6 @@ class CreatePeminjamansTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('tbl_peminjamans');
+        Schema::dropIfExists('tbl_peminjaman');
     }
 }
