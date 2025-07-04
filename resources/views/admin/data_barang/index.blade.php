@@ -4,10 +4,9 @@
 <div class="container">
     <h2>Data Barang</h2>
     <a href="{{ route('admin.data_barang.create') }}" class="btn btn-primary">+ Tambah Data</a>
-    <a href="#" class="btn btn-secondary">Cetak Data</a>
 
     <table class="table table-bordered mt-3">
-        <thead class="table-info">
+        <thead class="table-light">
             <tr>
                 <th>No.</th>
                 <th>Nama Barang</th>

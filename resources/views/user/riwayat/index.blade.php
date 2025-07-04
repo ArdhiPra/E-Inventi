@@ -3,12 +3,13 @@
 @section('title', 'Riwayat Peminjaman')
 
 @section('content')
+
 <div class="container mt-4">
     <h5 class="fw-bold">Riwayat Peminjaman</h5>
     <p class="text-muted">Aset HMJ TI</p>
 
     <div class="table-responsive">
-        <table class="table table-bordered table-hover text-center align-middle">
+        <table class="table table-bordered table-hover text-center align-middle table-riwayat">
             <thead class="table-light">
                 <tr>
                     <th>Tanggal Pengajuan</th>
@@ -16,7 +17,7 @@
                     <th>Barang</th>
                     <th>Jumlah</th>
                     <th>Jam Mulai</th>
-                    <th>Jam Akhir</th>
+                    <th>Jam Berakhir</th>
                     <th>Deskripsi</th>
                     <th>Status</th>
                     <th>Aksi</th>

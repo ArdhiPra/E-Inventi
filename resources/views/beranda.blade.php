@@ -152,20 +152,20 @@
                                 <img src="{{ asset('images/proyektor.png') }}" class="card-img-top p-3"
                                     alt="Proyektor 2">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">Proyektor 2</h6>
+                                    <h6 class="card-title">Proyektor</h6>
                                 </div>
                             </div>
                             <div class="card shadow-sm">
                                 <img src="{{ asset('images/gamelan.png') }}" class="card-img-top p-3" alt="Gamelan 2">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">Gamelan 2</h6>
+                                    <h6 class="card-title">Gamelan</h6>
                                 </div>
                             </div>
                             <div class="card shadow-sm">
                                 <img src="{{ asset('images/peralatan.png') }}" class="card-img-top p-3"
                                     alt="Peralatan 2">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title">Peralatan 2</h6>
+                                    <h6 class="card-title">Peralatan</h6>
                                 </div>
                             </div>
                         </div>
@@ -197,26 +197,59 @@
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    height: 600,
+    slotMinTime: "06:00:00",
+    slotMaxTime: "22:00:00",
+    displayEventTime: false, // <== HILANGKAN jam dari title
+    eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    },
+    events: '/calendar-events',
+    eventDisplay: 'block',
+    eventDidMount: function(info) {
+    const start = info.event.start;
+    const end = info.event.end;
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', // Tampilkan kalender bulanan
-                headerToolbar: {
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
-                },
-                height: 600,
+    const pad = num => String(num).padStart(2, '0');
 
-                // Tidak ada 'events' yang ditentukan, jadi kalender kosong
-            });
+    const formatTime = (date) => {
+        if (!date) return '??:??'; // Jika null, tampilkan placeholder
+        return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    };
 
-            calendar.render();
-        });
-    </script>
+    const tooltipContent = `
+        ${formatTime(start)} - ${formatTime(end)}
+    `;
+
+    tippy(info.el, {
+        content: tooltipContent,
+        allowHTML: true,
+        placement: 'top',
+        arrow: true,
+    });
+}
+
+});
+
+    calendar.render();
+
+});
+</script>
 
     <style>
         #calendar {
@@ -224,6 +257,8 @@
             /* Resize calendar to smaller width */
             margin: 20px auto;
             margin-top: 50px;
+            z-index: 1;
+            position: relative;
         }
 
         .calendar-title-box {
@@ -239,6 +274,25 @@
             color: #0d6efd;
             margin-bottom: 1rem;
         }
+
+        .fc-event {
+        font-size: 13px;
+        padding: 2px 4px;
+        border-radius: 6px;
+        }
+
+        .fc-daygrid-event-dot {
+            display: none; /* Hilangkan titik kecil */
+        }
+
+        .fc .fc-toolbar-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .fc-day-today {
+        background-color: #F8F9FA !important;
+}
     </style>
 
 </body>

@@ -36,46 +36,62 @@
         </div>
     </div>
 
-    <style>
-        /* Styling untuk halaman peminjaman */
-        .fc .fc-toolbar-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-    </style>
-
     {{-- Scripts --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    height: 600,
+    slotMinTime: "06:00:00",
+    slotMaxTime: "22:00:00",
+    displayEventTime: false, // <== HILANGKAN jam dari title
+    eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    },
+    events: '/calendar-events',
+    eventDisplay: 'block',
+    eventDidMount: function(info) {
+    const start = info.event.start;
+    const end = info.event.end;
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                headerToolbar: {
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'dayGridMonth,dayGridWeek,dayGridDay'
-                },
-                height: 750,
-                events: [
-                    // Contoh dummy data
-                    {
-                        title: 'Peminjaman Laptop',
-                        start: '2025-06-22'
-                    },
-                    {
-                        title: 'Peminjaman Proyektor',
-                        start: '2025-06-24'
-                    }
-                ]
-            });
+    const pad = num => String(num).padStart(2, '0');
 
-            calendar.render();
-        });
-    </script>
+    const formatTime = (date) => {
+        if (!date) return '??:??'; // Jika null, tampilkan placeholder
+        return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    };
+
+    const tooltipContent = `
+        ${formatTime(start)} - ${formatTime(end)}
+    `;
+
+    tippy(info.el, {
+        content: tooltipContent,
+        allowHTML: true,
+        placement: 'top',
+        arrow: true,
+    });
+}
+
+});
+
+    calendar.render();
+
+});
+</script>
 
 </body>
 </html>

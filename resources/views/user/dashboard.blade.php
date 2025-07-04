@@ -92,37 +92,52 @@
     <script>
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
-
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            height: 600,
-            slotMinTime: "06:00:00",
-            slotMaxTime: "22:00:00",
-            eventTimeFormat: {
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            },
-            events: '/calendar-events',
-            eventDisplay: 'block',
-            displayEventTime: true,
-            eventDidMount: function(info) {
-                // Tooltip on hover
-                tippy(info.el, {
-                    content: info.event.title,
-                    placement: 'top',
-                    arrow: true,
-                });
-            }
-        });
+    initialView: 'dayGridMonth',
+    headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    height: 600,
+    slotMinTime: "06:00:00",
+    slotMaxTime: "22:00:00",
+    displayEventTime: false, // <== HILANGKAN jam dari title
+    eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    },
+    events: '/calendar-events',
+    eventDisplay: 'block',
+    eventDidMount: function(info) {
+    const start = info.event.start;
+    const end = info.event.end;
 
-        calendar.render();
+    const pad = num => String(num).padStart(2, '0');
+
+    const formatTime = (date) => {
+        if (!date) return '??:??'; // Jika null, tampilkan placeholder
+        return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    };
+
+    const tooltipContent = `
+        ${formatTime(start)} - ${formatTime(end)}
+    `;
+
+    tippy(info.el, {
+        content: tooltipContent,
+        allowHTML: true,
+        placement: 'top',
+        arrow: true,
     });
+}
+
+});
+
+    calendar.render();
+
+});
 </script>
 
 
@@ -164,6 +179,10 @@
             font-size: 1.4rem;
             font-weight: bold;
         }
+
+        .fc-day-today {
+        background-color: #F8F9FA !important;
+}
     </style>
 
 

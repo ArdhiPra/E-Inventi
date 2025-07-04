@@ -11,12 +11,35 @@ class ProfileController extends Controller
 {
     public function edit()
     {
-    $user = Auth::user();
-    return view('user.profile.profile', compact('user'));
+        $user = Auth::user();
+        return view('user.profile.profile', compact('user'));
     }
-    
+
     /**
-     * Tampilkan form ubah password (jika sudah punya password).
+     * Proses update data profil user.
+     */
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . Auth::id()],
+            'phone' => ['nullable', 'string', 'max:20'],
+            'address' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui.');
+    }
+
+    /**
+     * Tampilkan form ubah password.
      */
     public function showChangePasswordForm()
     {
@@ -24,7 +47,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Proses update password untuk user yang sudah punya password.
+     * Proses update password.
      */
     public function updatePassword(Request $request)
     {
@@ -50,16 +73,15 @@ class ProfileController extends Controller
             'new_password' => ['required', 'min:8', 'confirmed'],
         ]);
 
-        /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // Cegah set password jika user sudah memiliki password
         if (!is_null($user->password)) {
             return redirect()
                 ->route('user.password.edit')
                 ->withErrors(['new_password' => 'Anda sudah memiliki password.']);
         }
 
+        /** @var \App\Models\User $user */
         $user->password = Hash::make($request->new_password);
         $user->save();
 

@@ -22,8 +22,8 @@ class CalendarController extends Controller
 
             $events[] = [
                 'title' => $p->barang->nama_barang,
-                'start' => $p->tanggal . 'T' . $p->jam_mulai,
-                'end' => $p->tanggal . 'T' . $p->jam_berakhir,
+                'start' => date('c', strtotime($p->tanggal . ' ' . $p->jam_mulai)),
+                'end' => date('c', strtotime($p->tanggal . ' ' . $p->jam_berakhir)),
                 'color' => $color,
                 'textColor' => 'white', // Biar kontras
             ];

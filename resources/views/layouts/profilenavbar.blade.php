@@ -47,10 +47,6 @@
            class="list-group-item list-group-item-action {{ isset($active) && $active === 'profile' ? 'active' : '' }}">
             <i class="bi bi-person-fill me-2"></i> Informasi Akun
         </a>
-        <a href="#"
-           class="list-group-item list-group-item-action {{ isset($active) && $active === 'riwayat' ? 'active' : '' }}">
-            <i class="bi bi-receipt me-2"></i> Riwayat
-        </a>
         <a href="{{ route('user.password.edit') }}"
            class="list-group-item list-group-item-action {{ isset($active) && $active === 'password' ? 'active' : '' }}">
             <i class="bi bi-key me-2"></i> Ubah Password

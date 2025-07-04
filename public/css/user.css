@@ -148,3 +148,99 @@ a#userDropdown:hover .custom-user-icon {
     outline: none !important;
     box-shadow: none !important;
 }
+
+#calendar {
+    max-width: 85%;
+    /* Resize calendar to smaller width */
+    margin: 20px auto;
+    margin-top: 50px;
+    z-index: 1;
+    position: relative;
+}
+
+.calendar-title-box {
+    border: 2px solid #0d6efd;
+    /* Outline biru */
+    border-radius: 8px;
+    padding: 10px 16px;
+    display: inline-block;
+    /* Agar kotaknya hanya selebar teks */
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: #ffffff;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+.fc-event {
+    font-size: 13px;
+    padding: 2px 4px;
+    border-radius: 6px;
+}
+
+.fc-daygrid-event-dot {
+    display: none;
+    /* Hilangkan titik kecil */
+}
+
+
+.fc .fc-toolbar-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.fc-day-today {
+    background-color: #F8F9FA !important;
+}
+
+.table-riwayat {
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+
+.table-riwayat thead {
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+.table-riwayat th {
+    padding: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    background: linear-gradient(to bottom, #ffffff, #e9ecef);
+}
+
+.table-riwayat td {
+    background-color: #ffffff;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.table-riwayat tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.table-riwayat .text-success,
+.table-riwayat .text-warning,
+.table-riwayat .text-danger {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fw-bold {
+    font-weight: 600;
+}
+
+h5.fw-bold {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+p.text-muted {
+    margin-bottom: 1.5rem;
+}

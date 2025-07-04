@@ -46,11 +46,11 @@
   <i class="bi bi-box"></i>
   <span>Data Barang</span>
 </a>
-<a href="#" class="d-flex align-items-center gap-2 mb-2">
+<a href="{{ route('admin.pengajuan.index') }}" class="d-flex align-items-center gap-2 mb-2">
   <i class="bi bi-clock-history"></i>
-  <span>Riwayat Peminjaman</span>
+  <span>Pengajuan</span>
 </a>
-<a href="#" class="d-flex align-items-center gap-2 mb-2">
+<a href="{{ route('admin.laporan') }}" class="d-flex align-items-center gap-2 mb-2">
   <i class="bi bi-file-earmark-text"></i>
   <span>Laporan</span>
 </a>
@@ -76,7 +76,6 @@
 
 <!-- Bootstrap JS (opsional, tidak digunakan untuk toggle) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-@stack('scripts')
 
 </body>
 </html>

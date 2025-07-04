@@ -8,6 +8,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\User\PeminjamanController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Admin\DataBarangController;
+use App\Http\Controllers\Admin\LaporanBarangController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RiwayatController;
 
@@ -30,6 +31,7 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 // ADMIN
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/laporan-barang', [LaporanBarangController::class, 'index'])->name('admin.laporan');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -73,4 +75,4 @@ Route::middleware(['auth'])->prefix('user')->group(function () {
     Route::get('/user/riwayat', [RiwayatController::class, 'index'])->name('user.riwayat.index');    
 });
 
-Route::get('/calendar-events', [\App\Http\Controllers\CalendarController::class, 'getEvents']);
+Route::get('/calendar-events', [CalendarController::class, 'getEvents']);
