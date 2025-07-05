@@ -39,8 +39,6 @@
         {{-- Form ubah password biasa --}}
         <form method="POST" action="{{ route('user.password.update') }}">
             @csrf
-            @method('PUT')
-
             <div class="mb-3">
                 <label for="current_password" class="form-label">Password Saat Ini</label>
                 <input type="password" name="current_password" id="current_password" class="form-control" required>

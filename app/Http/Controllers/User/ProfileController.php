@@ -53,7 +53,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'current_password' => ['required', 'current_password'],
-            'new_password' => ['required', 'min:8', 'confirmed'],
+            'new_password' => ['required', 'min:6', 'confirmed'],
         ]);
 
         /** @var \App\Models\User $user */
@@ -70,7 +70,7 @@ class ProfileController extends Controller
     public function setPassword(Request $request)
     {
         $request->validate([
-            'new_password' => ['required', 'min:8', 'confirmed'],
+            'new_password' => ['required', 'min:6', 'confirmed'],
         ]);
 
         $user = Auth::user();

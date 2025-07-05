@@ -8,6 +8,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\User\PeminjamanController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Admin\DataBarangController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\LaporanBarangController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\RiwayatController;
@@ -42,6 +43,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/pengajuan', [\App\Http\Controllers\Admin\PengajuanController::class, 'index'])->name('pengajuan.index');
     Route::post('/pengajuan/{id}/setujui', [\App\Http\Controllers\Admin\PengajuanController::class, 'setujui'])->name('pengajuan.setujui');
     Route::post('/pengajuan/{id}/tolak', [\App\Http\Controllers\Admin\PengajuanController::class, 'tolak'])->name('pengajuan.tolak');
+});
+
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [AdminProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [AdminProfileController::class, 'update'])->name('profile.update');
 });
 
 // USER

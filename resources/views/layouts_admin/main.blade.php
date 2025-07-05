@@ -54,7 +54,7 @@
   <i class="bi bi-file-earmark-text"></i>
   <span>Laporan</span>
 </a>
-<a href="#" class="d-flex align-items-center gap-2 mb-2">
+<a href="{{ route('admin.profile.index') }}" class="d-flex align-items-center gap-2 mb-2">
   <i class="bi bi-person"></i>
   <span>Profile</span>
 </a>
